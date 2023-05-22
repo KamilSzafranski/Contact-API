@@ -1,15 +1,13 @@
-
 # Contact API
 
-This is simple REST API Contact project. 
-
+This is simple REST API Contact project.
 
 ## Installation
 
 Install project with npm
 
 ```bash
-  npm install 
+  npm install
 
 ```
 
@@ -18,12 +16,11 @@ Install project with npm
 Run project with npm
 
 ```bash
-  npm start  
+  npm start
 
 ```
-    
-## API Reference 
 
+## API Reference
 
 ### Singup
 
@@ -31,43 +28,39 @@ Run project with npm
   POST /api/users/singup
 ```
 
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Body| `email` | `string` | **Required**.  Email address |
-| Body | `password` | `string` | **Required**.  Password |
+#### Request
 
-
+| Structure | Parameter  | Type     | Description                 |
+| :-------- | :--------- | :------- | :-------------------------- |
+| Body      | `email`    | `string` | **Required**. Email address |
+| Body      | `password` | `string` | **Required**. Password      |
 
 #### Response
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `400` |  Bad request (email or password has not passed validation ) |
-| `409` |  Email is alredy taken |
-| `500` |  Server errors  |
-| `201` |  New account is created. Account isn't verify yet. A verified link has been sent  to the provided e-mail  address  |
+| Status | Description                                                                                                    |
+| :----- | :------------------------------------------------------------------------------------------------------------- |
+| `400`  | Bad request (email or password has not passed validation )                                                     |
+| `409`  | Email is alredy taken                                                                                          |
+| `500`  | Server errors                                                                                                  |
+| `201`  | New account is created. Account isn't verify yet. A verified link has been sent to the provided e-mail address |
 
- 
- ####  Respone Body Example:
- 
+#### Respone Body Example:
 
- 
 ```json
 {
-    "id": "user.id",
-    "email": "user.emial",
-    "subscription": "user.subscription",
+  "id": "user.id",
+  "email": "user.emial",
+  "subscription": "user.subscription"
 }
 ```
+
 or
 
 ```json
 {
-    "message": "error message",
+  "message": "error message"
 }
 ```
-
 
 ### Login
 
@@ -75,24 +68,23 @@ or
   POST /api/users/login
 ```
 
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Body| `email` | `string` | **Required**.  Email address |
-| Body | `password` | `string` | **Required**.  Password |
+#### Request
 
- ####  Respone 
+| Structure | Parameter  | Type     | Description                 |
+| :-------- | :--------- | :------- | :-------------------------- |
+| Body      | `email`    | `string` | **Required**. Email address |
+| Body      | `password` | `string` | **Required**. Password      |
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `400` |  Bad request (email or password has not passed validation; User doesn`t exist  ) |
-| `401` |  Unauthorized (Email or posswors isn't correct; User isn't verify)  |
-| `500` |  Server errors  |
-| `200` |  Login. |
+#### Respone
 
+| Status | Description                                                                    |
+| :----- | :----------------------------------------------------------------------------- |
+| `400`  | Bad request (email or password has not passed validation; User doesn`t exist ) |
+| `401`  | Unauthorized (Email or posswors isn't correct; User isn't verify)              |
+| `500`  | Server errors                                                                  |
+| `200`  | Login.                                                                         |
 
- #### Response Body Example:
-
+#### Response Body Example:
 
 ```json
 {
@@ -105,14 +97,14 @@ or
              }
 }
 ```
+
 or
 
 ```json
 {
-    "message": "error message",
+  "message": "error message"
 }
 ```
-
 
 ### Logout
 
@@ -120,39 +112,35 @@ or
   GET /api/users/logout
 ```
 
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Header | `Authorization` | `JWT` | **Required**.  JWT Bearer |
+#### Request
 
+| Structure | Parameter       | Type  | Description              |
+| :-------- | :-------------- | :---- | :----------------------- |
+| Header    | `Authorization` | `JWT` | **Required**. JWT Bearer |
 
 #### Response
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `204` |  Logout |
-| `500` |  Server errors  |
+| Status | Description   |
+| :----- | :------------ |
+| `204`  | Logout        |
+| `500`  | Server errors |
 
+#### Response Body Example:
 
- #### Response Body Example:
- 
-
- 
 ```json
 {
-    "email": "user.emial",
-    "subscription": "user.subscription",
+  "email": "user.emial",
+  "subscription": "user.subscription"
 }
 ```
+
 or
 
 ```json
 {
-    "message": "error message",
+  "message": "error message"
 }
 ```
-
-
 
 ### Current
 
@@ -160,31 +148,29 @@ or
   GET /api/users/current
 ```
 
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Header | `Authorization` | `JWT` | **Required**.  JWT Bearer |
+#### Request
 
+| Structure | Parameter       | Type  | Description              |
+| :-------- | :-------------- | :---- | :----------------------- |
+| Header    | `Authorization` | `JWT` | **Required**. JWT Bearer |
 
 #### Response
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `200` |  Current user is returned in request body  |
-| `401` |  Unauthorized   |
-| `500` |  Server errors  |
+| Status | Description                              |
+| :----- | :--------------------------------------- |
+| `200`  | Current user is returned in request body |
+| `401`  | Unauthorized                             |
+| `500`  | Server errors                            |
 
+#### Response Body Example:
 
- #### Response Body Example:
- 
-
- 
 ```json
 {
-    "email": "user.emial",
-    "subscription": "user.subscription",
+  "email": "user.emial",
+  "subscription": "user.subscription"
 }
 ```
+
 or
 
 ```json
@@ -197,118 +183,107 @@ or
 ### Update subscription
 
 ```http
-  Patch /api/users/
+  PATCH /api/users/
 ```
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Header | `Authorization` | `JWT` | **Required**.  JWT Bearer |
-| Body | `subscription` | `String` | **Required**.  Type of subscription |
 
+#### Request
 
+| Structure | Parameter       | Type     | Description                        |
+| :-------- | :-------------- | :------- | :--------------------------------- |
+| Header    | `Authorization` | `JWT`    | **Required**. JWT Bearer           |
+| Body      | `subscription`  | `String` | **Required**. Type of subscription |
 
 #### Response
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `200` |  Subscription has been update succesful |
-| `400` |  Bad request (subscription isn't verified) |
-| `401` |  Unauthorized   |
-| `500` |  Server errors  |
+| Status | Description                               |
+| :----- | :---------------------------------------- |
+| `200`  | Subscription has been update succesful    |
+| `400`  | Bad request (subscription isn't verified) |
+| `401`  | Unauthorized                              |
+| `500`  | Server errors                             |
 
+#### Response Body Example:
 
-
- #### Response Body Example:
- 
-
- 
 ```json
 {
-    "email": "user.emial",
-    "subscription": "user.subscription",
+  "email": "user.emial",
+  "subscription": "user.subscription"
 }
 ```
+
 or
 
 ```json
 {
-    "message": "error message",
+  "message": "error message"
 }
 ```
 
 ### Update avatars
 
 ```http
-  Patch /api/users/avatars
+  PATCH /api/users/avatars
 ```
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Header | `Authorization` | `JWT` | **Required**.  JWT Bearer |
-| Body | `avatar` | `file` | **Required**.  New avatar |
 
+#### Request
+
+| Structure | Parameter       | Type   | Description              |
+| :-------- | :-------------- | :----- | :----------------------- |
+| Header    | `Authorization` | `JWT`  | **Required**. JWT Bearer |
+| Body      | `avatar`        | `file` | **Required**. New avatar |
 
 #### Response
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `200` |  Avatar has been update succesful |
-| `401` |  Unauthorized   |
-| `500` |  Server errors  |
+| Status | Description                      |
+| :----- | :------------------------------- |
+| `200`  | Avatar has been update succesful |
+| `401`  | Unauthorized                     |
+| `500`  | Server errors                    |
 
+#### Response Body Example:
 
-
- #### Response Body Example:
- 
-
- 
 ```json
 {
-    "avatarURL": "path to avatar",
+  "avatarURL": "path to avatar"
 }
 ```
+
 or
 
 ```json
 {
-    "message": "error message",
+  "message": "error message"
 }
 ```
-
 
 ### Re-verification
 
 ```http
-  post /api/users/verify
+  POST /api/users/verify
 ```
 
+#### Request
 
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Body | `email` | `String` | **Required**.  Email address |
+| Structure | Parameter | Type     | Description                 |
+| :-------- | :-------- | :------- | :-------------------------- |
+| Body      | `email`   | `String` | **Required**. Email address |
 
 #### Response
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `400` |  Bad request (email isn't validation;  missing field email; Verifiacaiont has alredy been passed ) |
-| `404` |  User isn't exist |
-| `200` |  A verified link has been  again sent  to the provided e-mail  address  |
-| `500` |  Server errors  |
+| Status | Description                                                                                      |
+| :----- | :----------------------------------------------------------------------------------------------- |
+| `400`  | Bad request (email isn't validation; missing field email; Verifiacaiont has alredy been passed ) |
+| `404`  | User isn't exist                                                                                 |
+| `200`  | A verified link has been again sent to the provided e-mail address                               |
+| `500`  | Server errors                                                                                    |
 
+#### Response Body Example:
 
-
- #### Response Body Example:
- 
-
- 
 ```json
 {
-    "message": "message",
+  "message": "message"
 }
 ```
-
 
 ### Get all contacts
 
@@ -316,50 +291,49 @@ or
   GET /api/contacts/page=number&limit=numberfavorite=boolean
 
 ```
-#### Parameter 
- |Parameter |  Description                |
- |:-------- | :------------------------- |
- |`Limit` |  The number of results to return per page. Default is of Infinite  |
- |`Page` |  Use this to page through the results. |
- |`Favorite` | Sort by favourite flag  |
 
+#### Parameter
 
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Header | `Authorization` | `JWT` | **Required**.  JWT Bearer |
+| Parameter  | Description                                                      |
+| :--------- | :--------------------------------------------------------------- |
+| `Limit`    | The number of results to return per page. Default is of Infinite |
+| `Page`     | Use this to page through the results.                            |
+| `Favorite` | Sort by favourite flag                                           |
 
- ####  Respone 
+#### Request
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `401` |  Unauthorized   |
-| `500` |  Server errors  |
-| `200` |   Array of contacts is retrned in request body |
+| Structure | Parameter       | Type  | Description              |
+| :-------- | :-------------- | :---- | :----------------------- |
+| Header    | `Authorization` | `JWT` | **Required**. JWT Bearer |
 
+#### Respone
 
- #### Response Body Example:
+| Status | Description                                  |
+| :----- | :------------------------------------------- |
+| `401`  | Unauthorized                                 |
+| `500`  | Server errors                                |
+| `200`  | Array of contacts is retrned in request body |
 
+#### Response Body Example:
 
 ```json
 [
-    {
-        "_id": "6442f74bc5585313a483dccd",
-        "name": "Allen Raymond",
-        "email": "nulla.ante@vestibul.co.uk",
-        "phone": "(992) 914-3792",
-        "favorite": false,
-        "owner": "6442be4b4fb8f585c6f14102" 
-    },
+  {
+    "_id": "6442f74bc5585313a483dccd",
+    "name": "Allen Raymond",
+    "email": "nulla.ante@vestibul.co.uk",
+    "phone": "(992) 914-3792",
+    "favorite": false,
+    "owner": "6442be4b4fb8f585c6f14102"
+  }
 ]
-
-
 ```
+
 or
 
 ```json
 {
-    "message": "error message",
+  "message": "error message"
 }
 ```
 
@@ -369,53 +343,48 @@ or
   GET /api/contacts/:contactId
 
 ```
-#### Parameter 
- |Parameter |  Description                |
- |:-------- | :------------------------- |
- |`id` |  The id of contact  |
- 
 
+#### Parameter
 
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Header | `Authorization` | `JWT` | **Required**.  JWT Bearer |
+| Parameter | Description       |
+| :-------- | :---------------- |
+| `id`      | The id of contact |
 
- ####  Respone 
+#### Request
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `401` |  Unauthorized   |
-| `404` |  Contact with provided id doesn't exist   |
-| `500` |  Server errors  |
-| `200` |   Array of contacts is retrned in request body |
+| Structure | Parameter       | Type  | Description              |
+| :-------- | :-------------- | :---- | :----------------------- |
+| Header    | `Authorization` | `JWT` | **Required**. JWT Bearer |
 
+#### Respone
 
- #### Response Body Example:
+| Status | Description                                  |
+| :----- | :------------------------------------------- |
+| `401`  | Unauthorized                                 |
+| `404`  | Contact with provided id doesn't exist       |
+| `500`  | Server errors                                |
+| `200`  | Array of contacts is retrned in request body |
 
+#### Response Body Example:
 
 ```json
-
-    {
-        "_id": "6442f74bc5585313a483dccd",
-        "name": "Allen Raymond",
-        "email": "nulla.ante@vestibul.co.uk",
-        "phone": "(992) 914-3792",
-        "favorite": false,
-        "owner": "6442be4b4fb8f585c6f14102" 
-    }
-
-
-
+{
+  "_id": "6442f74bc5585313a483dccd",
+  "name": "Allen Raymond",
+  "email": "nulla.ante@vestibul.co.uk",
+  "phone": "(992) 914-3792",
+  "favorite": false,
+  "owner": "6442be4b4fb8f585c6f14102"
+}
 ```
+
 or
 
 ```json
 {
-    "message": "error message",
+  "message": "error message"
 }
 ```
-
 
 ### Create contact
 
@@ -424,52 +393,42 @@ or
 
 ```
 
+#### Request
 
+| Structure | Parameter       | Type     | Description                                |
+| :-------- | :-------------- | :------- | :----------------------------------------- |
+| Header    | `Authorization` | `JWT`    | **Required**. JWT Bearer                   |
+| Body      | `email`         | `String` | **Required**. Email address of new contact |
+| Body      | `phone`         | `String` | **Required**. Phone number of new contact  |
+| Body      | `name`          | `String` | **Required**. Name of of new contact       |
 
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Header | `Authorization` | `JWT` | **Required**.  JWT Bearer |
-| Body | `email` | `String` | **Required**.  Email address of new contact|
-| Body | `phone` | `String` | **Required**.  Phone number of new contact |
-| Body | `name` | `String` | **Required**.  Name  of of new contact |
+#### Respone
 
+| Status | Description                                           |
+| :----- | :---------------------------------------------------- |
+| `401`  | Unauthorized                                          |
+| `400`  | Bad request (missing field; Parameter isn't validate) |
+| `500`  | Server errors                                         |
+| `201`  | New contact has been created                          |
 
-
- ####  Respone 
-
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `401` |  Unauthorized   |
-| `400` |  Bad request (missing field; Parameter isn't validate)   |
-| `500` |  Server errors  |
-| `201` |  New contact has been created |
-
-
-
-
- #### Response Body Example:
-
+#### Response Body Example:
 
 ```json
-
-    {
-        "_id": "6442f74bc5585313a483dccd",
-        "name": "Allen Raymond",
-        "email": "nulla.ante@vestibul.co.uk",
-        "phone": "(992) 914-3792",
-        "favorite": false,
-        "owner": "6442be4b4fb8f585c6f14102" 
-    }
-
-
-
+{
+  "_id": "6442f74bc5585313a483dccd",
+  "name": "Allen Raymond",
+  "email": "nulla.ante@vestibul.co.uk",
+  "phone": "(992) 914-3792",
+  "favorite": false,
+  "owner": "6442be4b4fb8f585c6f14102"
+}
 ```
+
 or
 
 ```json
 {
-    "message": "error message",
+  "message": "error message"
 }
 ```
 
@@ -479,49 +438,43 @@ or
   DELETE /api/contacts:contactId
 
 ```
-#### Parameter 
- |Parameter |  Description                |
- |:-------- | :------------------------- |
- |`id` |  The id of contact  |
 
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Header | `Authorization` | `JWT` | **Required**.  JWT Bearer |
+#### Parameter
 
+| Parameter | Description       |
+| :-------- | :---------------- |
+| `id`      | The id of contact |
 
- ####  Respone 
+#### Request
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `401` |  Unauthorized   |
-| `404` |  Contact with provided id doesn't exist  |
-| `500` |  Server errors  |
-| `201` |  Contact has been deleted |
+| Structure | Parameter       | Type  | Description              |
+| :-------- | :-------------- | :---- | :----------------------- |
+| Header    | `Authorization` | `JWT` | **Required**. JWT Bearer |
 
+#### Respone
 
+| Status | Description                            |
+| :----- | :------------------------------------- |
+| `401`  | Unauthorized                           |
+| `404`  | Contact with provided id doesn't exist |
+| `500`  | Server errors                          |
+| `201`  | Contact has been deleted               |
 
-
- #### Response Body Example:
-
+#### Response Body Example:
 
 ```json
-
-    {
-         "message": "contact has been deleted",
-    }
-
-
-
+{
+  "message": "contact has been deleted"
+}
 ```
+
 or
 
 ```json
 {
-    "message": "error message",
+  "message": "error message"
 }
 ```
-
 
 ### Update contact
 
@@ -530,58 +483,52 @@ or
 
 ```
 
-#### Parameter 
- |Parameter |  Description                |
- |:-------- | :------------------------- |
- |`id` |  The id of contact  |
+#### Parameter
 
+| Parameter | Description       |
+| :-------- | :---------------- |
+| `id`      | The id of contact |
 
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Header | `Authorization` | `JWT` | **Required**.  JWT Bearer |
-| Body | `email` | `String` |  Email address of new contact|
-| Body | `phone` | `String` |  Phone number of new contact |
-| Body | `name` | `String` |   Name  of of new contact |
+#### Request
+
+| Structure | Parameter       | Type     | Description                  |
+| :-------- | :-------------- | :------- | :--------------------------- |
+| Header    | `Authorization` | `JWT`    | **Required**. JWT Bearer     |
+| Body      | `email`         | `String` | Email address of new contact |
+| Body      | `phone`         | `String` | Phone number of new contact  |
+| Body      | `name`          | `String` | Name of of new contact       |
 
 Only oe parameter in request body is **Required**
 
- ####  Respone 
+#### Respone
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `401` |  Unauthorized   |
-| `400` |  Bad request (missing field; Parameter isn't validate)   |
-| `500` |  Server errors  |
-| `200` |  Contact has been updated |
+| Status | Description                                           |
+| :----- | :---------------------------------------------------- |
+| `401`  | Unauthorized                                          |
+| `400`  | Bad request (missing field; Parameter isn't validate) |
+| `500`  | Server errors                                         |
+| `200`  | Contact has been updated                              |
 
-
- #### Response Body Example:
-
+#### Response Body Example:
 
 ```json
-
-   {
-    "_id": "6442f74bc5585313a483dccd",
-    "name": "Allen Raymond",
-    "email": "nulla.ante@vestibul.co.uk",
-    "phone": "(715) 598-5792",
-    "favorite": false,
-    "owner": "6442be4b4fb8f585c6f14102"
+{
+  "_id": "6442f74bc5585313a483dccd",
+  "name": "Allen Raymond",
+  "email": "nulla.ante@vestibul.co.uk",
+  "phone": "(715) 598-5792",
+  "favorite": false,
+  "owner": "6442be4b4fb8f585c6f14102"
 }
-
-
-
 ```
+
 or
 
 ```json
 {
-    "message": "error message",
+  "message": "error message"
 }
 ```
-
-
 
 ### Update favorite field
 
@@ -590,53 +537,48 @@ or
 
 ```
 
-#### Parameter 
- |Parameter |  Description                |
- |:-------- | :------------------------- |
- |`id` |  The id of contact  |
+#### Parameter
 
+| Parameter | Description       |
+| :-------- | :---------------- |
+| `id`      | The id of contact |
 
-#### Request 
-|Structure | Parameter | Type     | Description                |
-| :-------- | :-------- | :------- | :------------------------- |
-| Header | `Authorization` | `JWT` | **Required**.  JWT Bearer |
-| Body | `favorite` | `boolean` | **Required**.   Favorite parmeter |
+#### Request
 
+| Structure | Parameter       | Type      | Description                     |
+| :-------- | :-------------- | :-------- | :------------------------------ |
+| Header    | `Authorization` | `JWT`     | **Required**. JWT Bearer        |
+| Body      | `favorite`      | `boolean` | **Required**. Favorite parmeter |
 
 On
 
- ####  Respone 
+#### Respone
 
-| Status | Description                |
-| :-------- |  :------------------------- |
-| `401` |  Unauthorized   |
-| `404` |  Contact with provided id doesn't exist  |
-| `400` |  Bad request (missing field; Parameter isn't validate)   |
-| `500` |  Server errors  |
-| `200` |  Field favorite has been updated |
+| Status | Description                                           |
+| :----- | :---------------------------------------------------- |
+| `401`  | Unauthorized                                          |
+| `404`  | Contact with provided id doesn't exist                |
+| `400`  | Bad request (missing field; Parameter isn't validate) |
+| `500`  | Server errors                                         |
+| `200`  | Field favorite has been updated                       |
 
-
- #### Response Body Example:
-
+#### Response Body Example:
 
 ```json
-
-   {
-    "_id": "6442f74bc5585313a483dccd",
-    "name": "Allen Raymond",
-    "email": "nulla.ante@vestibul.co.uk",
-    "phone": "(715) 598-5792",
-    "favorite": false,
-    "owner": "6442be4b4fb8f585c6f14102"
+{
+  "_id": "6442f74bc5585313a483dccd",
+  "name": "Allen Raymond",
+  "email": "nulla.ante@vestibul.co.uk",
+  "phone": "(715) 598-5792",
+  "favorite": false,
+  "owner": "6442be4b4fb8f585c6f14102"
 }
-
-
-
 ```
+
 or
 
 ```json
 {
-    "message": "error message",
+  "message": "error message"
 }
 ```
