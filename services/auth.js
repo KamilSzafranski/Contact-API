@@ -24,15 +24,10 @@ export const updateUserSubscription = (id, sub) =>
 export const updateAvatar = (id, avatarURL) =>
   User.findByIdAndUpdate({ _id: id }, { avatarURL }, { new: true });
 
-export const verify = (email) => User.findOne({ email });
+export const verify = (id) => User.findById({ _id: id });
 
-export const setVerified = (verificationToken) => {
-  console.log(verificationToken);
-  return User.findOneAndUpdate(
-    { verificationToken },
-    { verificationToken: null, verify: true },
-    { new: true }
-  );
+export const setVerified = (id) => {
+  return User.findByIdAndUpdate({ _id: id }, { verify: true }, { new: true });
 };
 
 export const checkVerify = (email) => User.findOne({ email });

@@ -1,5 +1,6 @@
 import path from "node:path";
 import fs from "node:fs/promises";
+import { createEmailTemp } from "../utils/createEmailTemp.js";
 import {
   validationEmail,
   validationLogAndPass,
@@ -31,13 +32,16 @@ export const singup = async (req, res, next) => {
 
     const user = await authServices.createUser(email, password, avatar);
 
+    const emailTemp = createEmailTemp(email, user._id);
+
     const msg = {
       to: email,
       from: process.env.EMAIL,
       subject: "Verification",
       text: `Please verify email:${email}`,
-      html: `<a href=http://localhost:3000/api/users/verify/${user.verificationToken}/${email}>Click mne</a>`,
+      html: emailTemp,
     };
+
     await sgMail.send(msg);
 
     return res.status(201).json({
@@ -163,17 +167,17 @@ export const updateAvatar = async (req, res, next) => {
 };
 
 export const verify = async (req, res, next) => {
-  const { verificationToken, email } = req.params;
+  const { id } = req.params;
 
   try {
-    const verifyUser = await authServices.verify(email);
+    const verifyUser = await authServices.verify(id);
     if (!verifyUser) return res.status(404).json({ message: "User not found" });
-    if (!verifyUser?.verificationToken)
+    if (verifyUser?.verify)
       return res
         .status(400)
         .json({ message: "Verification has already been passed" });
 
-    await authServices.setVerified(verificationToken);
+    await authServices.setVerified(id);
 
     return res.json({ message: "Verification succesful" });
   } catch (error) {
@@ -201,12 +205,14 @@ export const verifyAgain = async (req, res, next) => {
         .status(400)
         .json({ message: "Verification has already been passed" });
 
+    const emailTemp = createEmailTemp(email, user._id);
+
     const msg = {
       to: email,
       from: process.env.EMAIL,
       subject: "Verification",
       text: `Please verify email:${email}`,
-      html: `<a href=http://localhost:3000/api/users/verify/${user.verificationToken}/${email}>Click mne</a>`,
+      html: emailTemp,
     };
     await sgMail.send(msg);
 
