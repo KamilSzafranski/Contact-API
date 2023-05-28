@@ -2,23 +2,9 @@
 
 This is simple REST API Contact project.
 
-## Installation
+## HTTP host
 
-Install project with npm
-
-```bash
-  npm install
-
-```
-
-## Run
-
-Run project with npm
-
-```bash
-  npm start
-
-```
+https://contact-api-ffre.onrender.com/
 
 ## API Reference
 
